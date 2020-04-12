@@ -92,11 +92,6 @@ $("#scroll").click(function(){
 //判断js文件是否加载过
 function jsjudge(name,url,method){
 	if(jslist.indexOf(name) ==-1){
-		console.log(url)
-		$.ajax({
-			url:url,
-			
-		})
 		$.getScript(url,function(){
 			method();
 		})
@@ -141,7 +136,10 @@ function timesec(time){
 	return t
 }
 function biliifram(){
-	let biurl = 'https://node.guicai.work/bilifavorite'
+	let biurl = 'https://node.guicai.work/bilifavorite';
+	$(".bilibil-ul").on('click','a,p',function(){
+		liclick($(this).parent().data("id"))
+	})
 	$.ajax({
 		url: biurl,
 		type: 'get',
@@ -154,15 +152,11 @@ function biliifram(){
 			let data = ev.data.medias
 			liclick(data[0].id)
 			for(let i=0;i<data.length;i++){
-				let mt = `<li>
-					<a onclick="liclick(`+data[i].id+`)">
-						<img src="`+data[i].cover+`@380w_240h_100Q_1c.webp" referrerPolicy="no-referrer" alt="《下山》改编《下贱》- 你就是馋她的身子！！">
-						<span class="length">`+timesec(data[i].duration)+`</span>
-					</a>
-					<p onclick="liclick(`+data[i].id+`)" title="`+data[i].title+`" class="title">`+data[i].title+`</p>
-				</li>
-				`
-				html +=mt
+				let mt = $(['<li data-id="'+data[i].id+'"><a>',
+				'<img src="'+data[i].cover+'@380w_240h_100Q_1c.webp" referrerPolicy="no-referrer" alt="'+data[i].title+'">',
+				'<span class="length">'+timesec(data[i].duration)+'</span></a>',
+				'<p title="'+data[i].title+'" class="title">'+data[i].title+'</p></li>'].join(''))
+				html +=mt.prop("outerHTML");
 			}
 			$('.bilibil-ul').html(html)
 		}
@@ -221,9 +215,7 @@ function qqpage(page,litml){
 	if(page!=litml){
 	let n = ''
 		if((litml-page)<=3){
-			console.log(litml-page)
 			for(let i=litml-1;i>page;i--){
-				console.log(i)
 				n = n+'<span class="page-number" onclick="qqtall('+i+')">'+i+'</span>'
 			}
 		}else{
@@ -840,13 +832,13 @@ function pjaxLoad(){
 	//ajax请求超时后触发。可调用e.preventDefault();继续等待ajax请求结束
 	$(document).on({
 		"pjax:timeout": function(xhr, options) {
-			console.log("8")
+			console.log("发生奇怪错误",xhr)
 		}
 	});
 	//ajax请求失败后触发。默认失败后会跳转url，如要阻止跳转可调用 e.preventDefault();
 	$(document).on({
 		"pjax:error": function(xhr, options) {
-			console.log("9")
+			console.log("发生奇怪错误",xhr)
 		}
 	});
 	//ajax请求结束后触发，不管成功还是失败
@@ -873,7 +865,7 @@ function pjaxLoad(){
  */
 function my_introduce(){
 	//关于我与目录之间切换
-	var rightTop = $(".index-about-me").children("ul").children("li");
+	var rightTop = $(".index-about-me").children("ul").children("li")
 	var rightcen = $(".index-about-catalog").children("section");
 	rightTop.on('click',function(){
 		let index = rightTop.index(this)
@@ -886,7 +878,7 @@ function my_introduce(){
 		}
 	})
 	if(!utilwrok.cssjudge($("html")[0])){
-		$(".index-about-me .toc").find("a").click(function(){
+		$(".index-about-me .toc").on('click','a',function(){
 			$("html,body").animate({
 			   scrollTop: $($(this).attr('href')).offset().top}, 500);
 			return false
@@ -945,6 +937,33 @@ function my_introduce(){
 		}
 	}
 	$(window).bind('scroll',catalog_toc);
+	if($(".page_message").length!=0){
+		let pass = $(".page_message").data("password");
+		let text = $("#article-sole-context").html();
+		let toc = $("#article-sole-toc").html()
+		$("#article-sole-context").remove();
+		$("#article-sole-toc").remove();
+		$(".page_message").removeAttr("data-password");
+		$(".page_message").on('keypress',function(){
+			if($(this).val() == pass){
+				$("#article-sole").html(text);
+				$(".index-about-catalog").children("section").eq(0).html(toc)
+				//懒加载
+				Imglazyload();
+				//图片放大
+				imgmax();
+				//目录数据
+				arr = $(".index-about-me .toc").find("a");
+				arr_top = []
+				utilwrok.setTimeout(function() {
+				  for(let i=0;i<arr.length;i++){
+				  	arr_top.push($(arr.eq(i).attr('href')).offset().top-10)
+				  }
+				  arr_top.push(10000)
+				});
+			}
+		})
+	}
 	//关于我界面
 	Aboutme()
 }
@@ -962,6 +981,49 @@ function Aboutme(){
 		}
 	})
 }
+/**
+ * 底部事件
+ */
+//秒转换方法
+function formatSeconds(value) { 
+ var theTime = parseInt(value/1000);// 需要转换的时间秒 
+ var theTime1 = 0;// 分 
+ var theTime2 = 0;// 小时 
+ var theTime3 = 0;// 天
+ if(theTime > 60) { 
+  theTime1 = parseInt(theTime/60); 
+  theTime = parseInt(theTime%60); 
+  if(theTime1 > 60) { 
+   theTime2 = parseInt(theTime1/60); 
+   theTime1 = parseInt(theTime1%60); 
+   if(theTime2 > 24){
+    //大于24小时
+    theTime3 = parseInt(theTime2/24);
+    theTime2 = parseInt(theTime2%24);
+   }
+  } 
+ } 
+ var result = '';
+ if(theTime > 0){
+  result = ""+parseInt(theTime)+"秒";
+ }
+ if(theTime1 > 0) { 
+  result = ""+parseInt(theTime1)+"分"+result; 
+ } 
+ if(theTime2 > 0) { 
+  result = ""+parseInt(theTime2)+"小时"+result; 
+ } 
+ if(theTime3 > 0) { 
+  result = ""+parseInt(theTime3)+"天"+result; 
+ }
+ return result; 
+}
+let qitime = (new Date("2020/04/07 00:00:00")).getTime();
+let bottomtime = $('.bottom-information>li:eq(0)>span');
+setInterval(function(){
+	let da = new Date();
+	bottomtime.html(formatSeconds(da.getTime()-qitime))
+},1000)
 /** 
  * 背景线条点击特效
  */
