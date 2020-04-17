@@ -14,7 +14,8 @@ var utilwrok = {
 	},
 	cdnjsdelivr = "https://cdn.jsdelivr.net/gh/guicaiyue/Xin/",
 	jslist = [],
-	jsondata=[];
+	jsondata=[],
+	index_message=$("#message")
 //监听是否页面上角控制图标改变
 window.originTitle = document.title;
 var titleTime;
@@ -38,6 +39,12 @@ if(window.innerWidth>991){live2dls()}
 pjaxLoad();
 //加载播放器
 aplayerls()
+//默认消息
+messagefun(function(){
+	index_message.children("p").click(function(){
+		window.location.href = 'https://cdn.jsdelivr.net/gh/guicaiyue/Xin/index/jian_li.png'
+	})
+})
 //判断函数是否存在若存在则实行
 judge();
 function judge(){
@@ -89,6 +96,14 @@ $("#scroll").click(function(){
 		scrollTop: 0,
 	}, 300);
 })
+//左边消息提示
+function messagefun(zhi){
+	index_message.css("left","0px");
+	zhi()
+	setTimeout(function(){
+		index_message.removeAttr('style')
+	},3000)
+}
 //判断js文件是否加载过
 function jsjudge(name,url,method){
 	if(jslist.indexOf(name) ==-1){
