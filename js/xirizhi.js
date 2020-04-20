@@ -15,7 +15,9 @@ var utilwrok = {
 	cdnjsdelivr = "https://cdn.jsdelivr.net/gh/guicaiyue/Xin/",
 	jslist = [],
 	jsondata=[],
-	index_message=$("#message")
+	index_message=$("#message"),
+	xlm_wid='16072',
+	xlm_url='https://www.xianliao.me/';
 //监听是否页面上角控制图标改变
 window.originTitle = document.title;
 var titleTime;
@@ -996,6 +998,13 @@ function Aboutme(){
 		}
 	})
 }
+/**
+ * 闲聊吧
+ */
+
+utilwrok.setTimeout(function(){
+	jsjudge('smalltalk','https://www.xianliao.me/embed.js',function(){})
+})
 /**
  * 底部事件
  */
