@@ -321,9 +321,6 @@
               i = "https://q2.qlogo.cn/headimg_dl?dst_uin=" + prefix + "&spec=100";
             }
           }
-          console.log(i);
-          console.log(e);
-          console.log(t);
           return '<img class="avatar" data-src="'.concat(i, '"/>') + '<div class="main"><div class="head" >' + "".concat(t.get("link") ? '<a class="name" href="'.concat(t.get("link"), '" target="_blank" rel="nofollow" >').concat(t.get("nick"), "</a>") : '<span class="name">'.concat(t.get("nick"), "</span>")) + "".concat(c).concat(s, "</div>") + '<div class="meta">' + "<a".concat(t.get("rid") ? ' rid="'.concat(t.get("rid"), '"') : ' rid="'.concat(t.id, '"'), " at='@").concat(t.get("nick"), '\' class="at" id="at-').concat(t.id, '">').concat(e.i18n.reply, "</a>") + '<span class="time">'.concat((0, r.default)(t.get("createdAt"), e.i18n), "</span>") + "</div>" + '<section class="content" id="comment-'.concat(t.id, '">') + '<div class="inner md">'.concat(t.get("comment"), "</div>") + '</section><div class="children">' + '<ul class="list" id="children-'.concat(t.id, '"></ul>') + "</div></div>"
       }
   }, function(e, t, n) {
@@ -992,8 +989,6 @@
                       text: e.i18n.inputTips,
                       ctxt: e.i18n.confirm
                   })
-                  console.log(e.C.mail);
-                  console.log(e);
               }, (0, a.default)(e, e, o)) : e.inputs.nick.focus() : e.inputs.comment.focus()
           };
           var n = function() {
