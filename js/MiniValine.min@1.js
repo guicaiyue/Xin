@@ -70,7 +70,7 @@
           return a.d(t, "a", t), t
       }, a.o = function(e, t) {
           return Object.prototype.hasOwnProperty.call(e, t)
-      }, a.p = "https://cdn.jsdelivr.net/gh/amehime/MiniValine@v4.2.2-beta10/dist/", a.oe = function(e) {
+      }, a.p = "https://gcore.jsdelivr.net/gh/amehime/MiniValine@v4.2.2-beta10/dist/", a.oe = function(e) {
           throw console.error(e), e
       };
       var r = window.webpackJsonpMiniValine = window.webpackJsonpMiniValine || [],
@@ -94,7 +94,7 @@
       "use strict";
       Object.defineProperty(t, "__esModule", {
           value: !0
-      }), t.VERSION = "4.2.2", t.GBUrl = "https://gravatar.loli.net/avatar/", t.EUrl = ["https://cdn.jsdelivr.net/npm/alus@latest", "https://cdn.jsdelivr.net/gh/MiniValine/qq@master", "https://cdn.jsdelivr.net/gh/MiniValine/Bilibilis@master", "https://cdn.jsdelivr.net/gh/MiniValine/tieba@master", "https://cdn.jsdelivr.net/gh/MiniValine/twemoji@master", "https://cdn.jsdelivr.net/gh/MiniValine/weibo@master"], t.pf = "https://cdn.polyfill.io/v3/polyfill.min.js?features=es6", t.i18nUrl = "https://cdn.jsdelivr.net/gh/MiniValine/minivaline-i18n@latest/", t.DEHash = "9e63c80900d106cbbec5a9f4ea433a3e", t.MaxNL = 6, t.PS = 6, t.C = {
+      }), t.VERSION = "4.2.2", t.GBUrl = "https://gravatar.loli.net/avatar/", t.EUrl = ["https://gcore.jsdelivr.net/npm/alus@latest", "https://gcore.jsdelivr.net/gh/MiniValine/qq@master", "https://gcore.jsdelivr.net/gh/MiniValine/Bilibilis@master", "https://gcore.jsdelivr.net/gh/MiniValine/tieba@master", "https://gcore.jsdelivr.net/gh/MiniValine/twemoji@master", "https://gcore.jsdelivr.net/gh/MiniValine/weibo@master"], t.pf = "https://cdn.polyfill.io/v3/polyfill.min.js?features=es6", t.i18nUrl = "https://gcore.jsdelivr.net/gh/MiniValine/minivaline-i18n@latest/", t.DEHash = "9e63c80900d106cbbec5a9f4ea433a3e", t.MaxNL = 6, t.PS = 6, t.C = {
           ip: "",
           comment: "",
           rid: "",
@@ -718,9 +718,9 @@
       }
       e.exports = function(e) {
           var t;
-          1 < arguments.length && void 0 !== arguments[1] && arguments[1] ? (t = [], window.autosize || t.push("npm/autosize@4.0.2/dist/autosize.min.js"), window.filterXSS || t.push("npm/xss@1.0.8/dist/xss.min.js"), e.config.closeUA || window.UAParser || t.push("npm/ua-parser-js@0.7.22/src/ua-parser.min.js"), !e.math && void 0 !== e.config.math || "undefined" != typeof MathJax || t.push("npm/mathjax@3/es5/tex-svg.js"), !e.md && void 0 !== e.config.md || window.marked || t.push("npm/marked@1.2.0/lib/marked.min.js"), (0, i.default)("https://cdn.jsdelivr.net/combine/" + t.join(","), (function() {
+          1 < arguments.length && void 0 !== arguments[1] && arguments[1] ? (t = [], window.autosize || t.push("npm/autosize@4.0.2/dist/autosize.min.js"), window.filterXSS || t.push("npm/xss@1.0.8/dist/xss.min.js"), e.config.closeUA || window.UAParser || t.push("npm/ua-parser-js@0.7.22/src/ua-parser.min.js"), !e.math && void 0 !== e.config.math || "undefined" != typeof MathJax || t.push("npm/mathjax@3/es5/tex-svg.js"), !e.md && void 0 !== e.config.md || window.marked || t.push("npm/marked@1.2.0/lib/marked.min.js"), (0, i.default)("https://gcore.jsdelivr.net/combine/" + t.join(","), (function() {
               e.initBody(), window.MV.scriptEle = !0
-          }), 1 == window.MV.scriptEle || 0 == t.length)) : (e.config.NoRecordIP || (void 0 === window.MV.ip ? (0, a.default)(e) : e.C.ip = window.MV.ip), t = [], window.md5 || t.push("npm/blueimp-md5@2.18.0/js/md5.min.js"), window.AV || t.push("npm/leancloud-storage@4/dist/av-min.js"), (0, i.default)("https://cdn.jsdelivr.net/combine/" + t.join(","), (function() {
+          }), 1 == window.MV.scriptEle || 0 == t.length)) : (e.config.NoRecordIP || (void 0 === window.MV.ip ? (0, a.default)(e) : e.C.ip = window.MV.ip), t = [], window.md5 || t.push("npm/blueimp-md5@2.18.0/js/md5.min.js"), window.AV || t.push("npm/leancloud-storage@4/dist/av-min.js"), (0, i.default)("https://gcore.jsdelivr.net/combine/" + t.join(","), (function() {
               e.initCheck(), window.MV.scriptInit = !0
           }), 1 == window.MV.scriptInit || 0 == t.length))
       }
